@@ -13,32 +13,17 @@
   --soft-pink:#f8c8dc;
 }
 
-.btn-surprise{
-  display:inline-block;
-  padding:14px 28px;
-  border-radius:40px;
-  background:rgba(255,255,255,0.15);
-  backdrop-filter:blur(10px);
-  border:1px solid rgba(255,255,255,0.3);
-  color:white;
-  text-decoration:none;
-  font-weight:500;
-  transition:.4s;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
-
-.btn-surprise:hover{
-  background:#d4af37;
-  transform:translateY(-4px);
-  box-shadow:0 8px 20px rgba(0,0,0,0.4);
-}
-
-*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
   font-family:'Poppins', sans-serif;
   min-height:100vh;
   background:
-    linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)),
+    linear-gradient(rgba(0,0,0,.75), rgba(0,0,0,.75)),
     url('https://images.unsplash.com/photo-1518199266791-5375a83190b7') center/cover no-repeat;
   display:flex;
   align-items:center;
@@ -47,15 +32,16 @@ body{
   color:white;
 }
 
+/* Card */
 .letter-card{
   background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(15px);
+  backdrop-filter:blur(18px);
   border-radius:20px;
   padding:30px 25px;
   max-width:600px;
   width:100%;
-  box-shadow:0 10px 40px rgba(0,0,0,.5);
-  animation: fadeIn 1.5s ease forwards;
+  box-shadow:0 10px 40px rgba(0,0,0,.6);
+  animation: fadeIn 1.2s ease forwards;
   opacity:0;
 }
 
@@ -67,35 +53,66 @@ h1{
   margin-bottom:20px;
 }
 
+/* Letter Text */
 .letter-text{
   font-size:1rem;
   line-height:1.7;
-  animation: typewriter 6s steps(100) 1s forwards;
   white-space:pre-line;
-  overflow:hidden;
   border-right:2px solid var(--gold);
+  min-height:180px;
 }
 
+/* Blinking Cursor */
+.cursor{
+  display:inline-block;
+  width:2px;
+  background:var(--gold);
+  margin-left:4px;
+  animation:blink 1s infinite;
+  height:1em;
+  vertical-align:bottom;
+}
+
+@keyframes blink{
+  0%, 50%, 100% { opacity:1; }
+  25%, 75% { opacity:0; }
+}
+
+/* Signature */
 .signature{
   margin-top:25px;
   text-align:right;
   font-weight:500;
   color:var(--gold);
-  animation: fadeUp 2s ease 5s forwards;
   opacity:0;
+  transform:translateY(10px);
+  transition:all 1s ease;
 }
 
+/* Button */
+.btn-surprise{
+  display:inline-block;
+  padding:14px 28px;
+  border-radius:40px;
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.3);
+  color:white;
+  text-decoration:none;
+  font-weight:500;
+  transition:.4s;
+  margin-top:30px;
+}
+
+.btn-surprise:hover{
+  background:var(--gold);
+  transform:translateY(-4px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.4);
+}
+
+/* Animations */
 @keyframes fadeIn{
   to{opacity:1;}
-}
-
-@keyframes fadeUp{
-  to{opacity:1; transform:translateY(0);}
-}
-
-@keyframes typewriter{
-  from{max-height:0;}
-  to{max-height:500px;}
 }
 
 @media(min-width:768px){
@@ -104,13 +121,27 @@ h1{
 }
 </style>
 </head>
+
 <body>
 
 <div class="letter-card">
   <h1>To My Beautiful Wife ❤️</h1>
 
-  <div class="letter-text">
-My Love,
+  <div class="letter-text" id="letter"></div>
+
+  <div class="signature" id="signature">
+    Forever Yours 💖
+  </div>
+
+  <div style="text-align:center;">
+    <a href="wizard.html" class="btn-surprise" id="nextBtn" style="display:none;">
+      Choose Your Surprise 🎁
+    </a>
+  </div>
+</div>
+
+<script>
+const text = `My Love,
 
 On this special day, I just want you to know how deeply grateful I am for you. 
 You are my happiness, my strength, my peace, and my greatest blessing.
@@ -123,15 +154,40 @@ I promise to stand beside you, love you endlessly,
 and make every birthday more beautiful than the last.
 
 Happy Birthday, my heart.
-  </div>
 
-  <div class="signature">
-    Forever Yours 💖
-  </div>
-  <div style="text-align:center; margin-top:30px;">
-    <a href="wizard.html" class="btn-surprise">Choose Your Surprise 🎁</a>
-  </div>
-</div>
+മുകളിൽ കാണുന്ന ഇംഗ്ലീഷ് കാര്യങ്ങൾ  ഒകെ കോപ്പി ചെയ്ത്  ആണെങ്കിലും അതിലെ കാര്യങ്ങൾ എല്ലാം കറക്റ്റ് ആണ് കേട്ടോ .
+
+നിന്നോട് ഞാൻ എത്ര തവണ പറഞ്ഞിട് ഉണ്ട് എന്ന് എനിക്ക് അറിയില്ല കഴിഞ്ഞ കുറച്ചു മാസങ്ങൾ ഒറ്റക് ഇരിക്കാൻ നല്ല പാടാരുന്നു.. ടോട്ടൽ ലോസ്.. നിന്നെ  ഇത്രത്തോളം മിസ് ചെയ്യും  എന്ന് ഇപ്പഴാണ് അറിയുന്നത്... പൈങ്കിളി  ആയാലും  അല്ലേലും I missed you in each seconds... still missing you
+counting each day thats left until you come back to me... 
+
+Love you to the moon and Back  Penne....`;
+
+
+
+const letterElement = document.getElementById("letter");
+const signature = document.getElementById("signature");
+const nextBtn = document.getElementById("nextBtn");
+
+let index = 0;
+let typingSpeed = 35;
+
+function typeWriter(){
+  if(index < text.length){
+    letterElement.innerHTML += text.charAt(index);
+    index++;
+    setTimeout(typeWriter, typingSpeed);
+  } else {
+    // Show signature after typing completes
+    signature.style.opacity = "1";
+    signature.style.transform = "translateY(0)";
+    nextBtn.style.display = "inline-block";
+  }
+}
+
+window.onload = () => {
+  typeWriter();
+};
+</script>
 
 </body>
 </html>
