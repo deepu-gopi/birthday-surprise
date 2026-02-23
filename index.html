@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Birthday My Love</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --gold: #d4af37;
+  --soft-pink: #f8c8dc;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:'Poppins', sans-serif;
+  background:#000;
+}
+
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+  color:white;
+  background:
+    linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
+    url('https://images.unsplash.com/photo-1519681393784-d120267933ba') center/cover no-repeat;
+}
+
+.content{
+  animation: fadeUp 1.5s ease forwards;
+  opacity:0;
+  transform:translateY(30px);
+}
+
+h1{
+  font-family:'Great Vibes', cursive;
+  font-size:2.8rem;
+  color:var(--soft-pink);
+  margin-bottom:15px;
+}
+
+p{margin-bottom:30px;}
+
+.btn{
+  padding:14px 32px;
+  border-radius:40px;
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.3);
+  color:white;
+  text-decoration:none;
+  transition:.4s;
+}
+
+.btn:hover{
+  background:var(--gold);
+  transform:translateY(-4px);
+}
+
+@keyframes fadeUp{
+  to{opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="content">
+    <h1>Happy Birthday, My Love ❤️</h1>
+    <p>Today is all about you.</p>
+    <a href="letter.html" class="btn">Open Your Surprise</a>
+  </div>
+</section>
+
+</body>
+</html>

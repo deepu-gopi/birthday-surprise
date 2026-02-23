@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Gift Journey</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --gold:#d4af37;
+  --pink:#f8c8dc;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:'Poppins', sans-serif;
+  background:
+    linear-gradient(rgba(0,0,0,.85), rgba(0,0,0,.95)),
+    url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622') center/cover fixed;
+  color:white;
+  scroll-behavior:smooth;
+}
+
+/* Sections */
+section{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:30px 20px;
+  text-align:center;
+}
+
+/* Heading */
+h1{
+  font-family:'Great Vibes', cursive;
+  font-size:3rem;
+  color:var(--pink);
+  margin-bottom:20px;
+}
+
+.subtitle{
+  opacity:.7;
+  margin-bottom:40px;
+}
+
+/* Full Gift Cards */
+.gift-full{
+  max-width:700px;
+  width:100%;
+  padding:40px 25px;
+  border-radius:25px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,0.2);
+  box-shadow:0 10px 40px rgba(0,0,0,.6);
+  transform:translateY(40px);
+  opacity:0;
+  transition:all 1s ease;
+}
+
+.gift-full.visible{
+  transform:translateY(0);
+  opacity:1;
+}
+
+.next-btn{
+  margin-top:30px;
+  padding:12px 26px;
+  border-radius:30px;
+  border:1px solid var(--gold);
+  background:transparent;
+  color:var(--gold);
+  cursor:pointer;
+  transition:.3s;
+}
+
+.next-btn:hover{
+  background:var(--gold);
+  color:white;
+}
+
+/* Final Grid */
+.grid{
+  display:grid;
+  gap:15px;
+  width:100%;
+  max-width:700px;
+  margin-top:30px;
+}
+
+.grid-item{
+  padding:18px;
+  border-radius:15px;
+  background:rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,0.2);
+  cursor:pointer;
+  transition:.3s;
+}
+
+.grid-item:hover{
+  transform:scale(1.05);
+}
+
+.grid-item.selected{
+  background:var(--gold);
+  color:white;
+  box-shadow:0 0 25px var(--gold);
+  transform:scale(1.05);
+}
+
+/* Modal */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  pointer-events:none;
+  transition:.4s ease;
+}
+
+.modal.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.modal-content{
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(20px);
+  padding:30px;
+  border-radius:20px;
+  max-width:400px;
+  width:90%;
+  text-align:center;
+  animation:fadeUp .6s ease forwards;
+}
+
+.modal-buttons{
+  margin-top:20px;
+  display:flex;
+  gap:10px;
+  justify-content:center;
+}
+
+.modal-buttons button{
+  padding:10px 18px;
+  border-radius:25px;
+  border:1px solid var(--gold);
+  background:transparent;
+  color:var(--gold);
+  cursor:pointer;
+  transition:.3s;
+}
+
+.modal-buttons button:hover{
+  background:var(--gold);
+  color:white;
+}
+
+@keyframes fadeUp{
+  from{transform:translateY(20px); opacity:0;}
+  to{transform:translateY(0); opacity:1;}
+}
+
+@media(min-width:768px){
+  h1{font-size:4rem;}
+  .grid{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Intro -->
+<section>
+  <h1>The Birthday Gift Journey 💖</h1>
+  <div class="subtitle">Scroll slowly and feel each surprise...</div>
+  <a href="#gift1" class="next-btn">Begin ✨</a>
+</section>
+
+<!-- Gift Sections -->
+<section id="gift1">
+  <div class="gift-full">🌹 A Romantic Candlelight Dinner Under Soft Lights</div>
+  <a href="#gift2" class="next-btn">Next 💕</a>
+</section>
+
+<section id="gift2">
+  <div class="gift-full">💎 A Beautiful Jewelry Surprise Just for You</div>
+  <a href="#gift3" class="next-btn">Next ✨</a>
+</section>
+
+<section id="gift3">
+  <div class="gift-full">✈️ A Secret Weekend Getaway Adventure</div>
+  <a href="#gift4" class="next-btn">Next 🌍</a>
+</section>
+
+<section id="gift4">
+  <div class="gift-full">🎬 A Cozy Movie Night with Your Favorite Treats</div>
+  <a href="#final" class="next-btn">Choose Your Wish 🎀</a>
+</section>
+
+<!-- Final Selection -->
+<section id="final">
+  <h1>Choose Your Birthday Wish 💖</h1>
+
+  <div class="grid">
+    <div class="grid-item" onclick="openModal(this,'Romantic Dinner 🌹')">🌹 Romantic Dinner</div>
+    <div class="grid-item" onclick="openModal(this,'Jewelry Surprise 💎')">💎 Jewelry Surprise</div>
+    <div class="grid-item" onclick="openModal(this,'Weekend Getaway ✈️')">✈️ Weekend Getaway</div>
+    <div class="grid-item" onclick="openModal(this,'Movie Night 🎬')">🎬 Movie Night</div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div class="modal" id="confirmModal">
+  <div class="modal-content">
+    <h2>Is this your birthday wish? 💖</h2>
+    <div class="modal-buttons">
+      <button onclick="confirmSelection()">Yes 💕</button>
+      <button onclick="closeModal()">Go Back</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const elements = document.querySelectorAll('.gift-full');
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    }
+  });
+},{threshold:0.4});
+elements.forEach(el=>observer.observe(el));
+
+let selectedGift = "";
+
+function openModal(card, gift){
+  document.querySelectorAll('.grid-item').forEach(i=>i.classList.remove('selected'));
+  card.classList.add('selected');
+  selectedGift = gift;
+  document.getElementById("confirmModal").classList.add("show");
+}
+
+function closeModal(){
+  document.getElementById("confirmModal").classList.remove("show");
+}
+
+function confirmSelection(){
+  window.location.href = "final.html?gift=" + encodeURIComponent(selectedGift);
+}
+</script>
+
+</body>
+</html>

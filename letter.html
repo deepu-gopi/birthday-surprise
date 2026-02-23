@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Letter To You</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --gold:#d4af37;
+  --soft-pink:#f8c8dc;
+}
+
+.btn-surprise{
+  display:inline-block;
+  padding:14px 28px;
+  border-radius:40px;
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.3);
+  color:white;
+  text-decoration:none;
+  font-weight:500;
+  transition:.4s;
+}
+
+.btn-surprise:hover{
+  background:#d4af37;
+  transform:translateY(-4px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.4);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:'Poppins', sans-serif;
+  min-height:100vh;
+  background:
+    linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)),
+    url('https://images.unsplash.com/photo-1518199266791-5375a83190b7') center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  color:white;
+}
+
+.letter-card{
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(15px);
+  border-radius:20px;
+  padding:30px 25px;
+  max-width:600px;
+  width:100%;
+  box-shadow:0 10px 40px rgba(0,0,0,.5);
+  animation: fadeIn 1.5s ease forwards;
+  opacity:0;
+}
+
+h1{
+  font-family:'Great Vibes', cursive;
+  font-size:2.5rem;
+  color:var(--soft-pink);
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.letter-text{
+  font-size:1rem;
+  line-height:1.7;
+  animation: typewriter 6s steps(100) 1s forwards;
+  white-space:pre-line;
+  overflow:hidden;
+  border-right:2px solid var(--gold);
+}
+
+.signature{
+  margin-top:25px;
+  text-align:right;
+  font-weight:500;
+  color:var(--gold);
+  animation: fadeUp 2s ease 5s forwards;
+  opacity:0;
+}
+
+@keyframes fadeIn{
+  to{opacity:1;}
+}
+
+@keyframes fadeUp{
+  to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes typewriter{
+  from{max-height:0;}
+  to{max-height:500px;}
+}
+
+@media(min-width:768px){
+  h1{font-size:3.5rem;}
+  .letter-text{font-size:1.1rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="letter-card">
+  <h1>To My Beautiful Wife ❤️</h1>
+
+  <div class="letter-text">
+My Love,
+
+On this special day, I just want you to know how deeply grateful I am for you. 
+You are my happiness, my strength, my peace, and my greatest blessing.
+
+Every smile of yours lights up my world.
+Every hug feels like home.
+Every moment with you is a gift I cherish.
+
+I promise to stand beside you, love you endlessly,
+and make every birthday more beautiful than the last.
+
+Happy Birthday, my heart.
+  </div>
+
+  <div class="signature">
+    Forever Yours 💖
+  </div>
+  <div style="text-align:center; margin-top:30px;">
+    <a href="wizard.html" class="btn-surprise">Choose Your Surprise 🎁</a>
+  </div>
+</div>
+
+</body>
+</html>
