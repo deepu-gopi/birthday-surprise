@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Surprise Is Coming 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:linear-gradient(#000,#111);
+  color:white;
+  font-family:'Poppins', sans-serif;
+  padding:20px;
+  overflow:hidden;
+}
+
+.card{
+  max-width:600px;
+  padding:40px 25px;
+  border-radius:25px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,0.2);
+  box-shadow:0 10px 40px rgba(0,0,0,.6);
+}
+
+h1{
+  font-family:'Great Vibes', cursive;
+  font-size:3rem;
+  color:#f8c8dc;
+}
+
+.countdown{
+  font-size:3rem;
+  margin-top:20px;
+  color:#d4af37;
+  animation:pulse 1s infinite;
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(20px);
+  transition:all 1s ease;
+  margin-top:20px;
+}
+
+.reveal.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+@keyframes pulse{
+  0%{opacity:1;}
+  50%{opacity:.6;}
+  100%{opacity:1;}
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Your Birthday Wish Is Locked 💖</h1>
+  <p id="selectedGift"></p>
+
+  <div class="countdown" id="countdown">10</div>
+
+  <div class="reveal" id="revealBox">
+    <h2>✨ The Surprise Begins Now ✨</h2>
+    <p>
+      Get ready… because something beautiful has been planned just for you.
+    </p>
+  </div>
+</div>
+
+<script>
+// Get selected gift from URL
+const params = new URLSearchParams(window.location.search);
+const gift = params.get("gift");
+document.getElementById("selectedGift").innerText = gift;
+
+let timeLeft = 10;
+const countdownElement = document.getElementById("countdown");
+const revealBox = document.getElementById("revealBox");
+
+const timer = setInterval(()=>{
+  timeLeft--;
+  countdownElement.innerText = timeLeft;
+
+  if(timeLeft <= 0){
+    clearInterval(timer);
+    countdownElement.style.display = "none";
+    revealBox.classList.add("show");
+  }
+},1000);
+</script>
+
+</body>
+</html>
