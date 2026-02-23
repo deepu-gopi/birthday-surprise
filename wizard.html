@@ -33,6 +33,7 @@ section{
   justify-content:center;
   padding:30px 20px;
   text-align:center;
+  position:relative;
 }
 
 /* Heading */
@@ -48,7 +49,7 @@ h1{
   margin-bottom:40px;
 }
 
-/* Full Gift Cards */
+/* Gift Card */
 .gift-full{
   max-width:700px;
   width:100%;
@@ -68,6 +69,22 @@ h1{
   opacity:1;
 }
 
+/* Elegant Circular Progress */
+.progress-wrapper{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  opacity:0;
+  transition:opacity .4s ease;
+}
+
+.progress-circle{
+  transform:rotate(-90deg);
+  transform-origin:50% 50%;
+}
+
+/* Buttons */
 .next-btn{
   margin-top:30px;
   padding:12px 26px;
@@ -228,7 +245,9 @@ h1{
     </div>
   </div>
 </div>
-<form name="gift-selection" method="POST" data-netlify="true" id="giftForm" style="display:none;">
+
+<!-- Netlify Form -->
+<form name="gift-selection" method="POST" data-netlify="true" action="/thankyou.html" hidden>
   <input type="hidden" name="form-name" value="gift-selection">
   <input type="hidden" name="selectedGift" id="selectedGiftInput">
   <input type="hidden" name="timestamp" id="timestampInput">
@@ -236,16 +255,69 @@ h1{
 </form>
 
 <script>
-const elements = document.querySelectorAll('.gift-full');
-const observer = new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add('visible');
+// Elegant Reveal With Progress Timer
+const sections = document.querySelectorAll("section");
+
+sections.forEach(section => {
+  const gift = section.querySelector(".gift-full");
+  if(!gift) return;
+
+  const progressWrapper = document.createElement("div");
+  progressWrapper.className = "progress-wrapper";
+  progressWrapper.innerHTML = `
+    <svg width="80" height="80">
+      <circle cx="40" cy="40" r="35" stroke="rgba(255,255,255,0.2)" stroke-width="4" fill="none"/>
+      <circle class="progress-circle" cx="40" cy="40" r="35"
+        stroke="#d4af37"
+        stroke-width="4"
+        fill="none"
+        stroke-dasharray="220"
+        stroke-dashoffset="220"
+        stroke-linecap="round"/>
+    </svg>
+  `;
+  section.insertBefore(progressWrapper, gift);
+
+  section.dataset.played = "false";
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    const section = entry.target;
+    const gift = section.querySelector(".gift-full");
+    const wrapper = section.querySelector(".progress-wrapper");
+
+    if(entry.isIntersecting && section.dataset.played === "false"){
+      section.dataset.played = "true";
+
+      const circle = wrapper.querySelector(".progress-circle");
+      wrapper.style.opacity = "1";
+
+      let duration = 3000;
+      let start = null;
+
+      function animate(timestamp){
+        if(!start) start = timestamp;
+        let progress = timestamp - start;
+        let percent = Math.min(progress / duration, 1);
+        circle.style.strokeDashoffset = 220 - (220 * percent);
+
+        if(progress < duration){
+          requestAnimationFrame(animate);
+        } else {
+          wrapper.style.opacity = "0";
+          gift.classList.add("visible");
+        }
+      }
+
+      requestAnimationFrame(animate);
     }
   });
-},{threshold:0.4});
-elements.forEach(el=>observer.observe(el));
+},{ threshold: 0.6 });
 
+sections.forEach(section => observer.observe(section));
+
+// Gift Selection Logic
 let selectedGift = "";
 
 function openModal(card, gift){
@@ -258,16 +330,13 @@ function openModal(card, gift){
 function closeModal(){
   document.getElementById("confirmModal").classList.remove("show");
 }
+
 function confirmSelection(){
-
   const now = new Date();
-  const formattedTime = now.toLocaleString();
-
   document.getElementById("selectedGiftInput").value = selectedGift;
-  document.getElementById("timestampInput").value = formattedTime;
+  document.getElementById("timestampInput").value = now.toLocaleString();
   document.getElementById("deviceInput").value = navigator.userAgent;
-
-  document.getElementById("giftForm").submit();
+  document.forms["gift-selection"].submit();
 }
 </script>
 
