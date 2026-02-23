@@ -228,6 +228,12 @@ h1{
     </div>
   </div>
 </div>
+<form name="gift-selection" method="POST" data-netlify="true" id="giftForm" style="display:none;">
+  <input type="hidden" name="form-name" value="gift-selection">
+  <input type="hidden" name="selectedGift" id="selectedGiftInput">
+  <input type="hidden" name="timestamp" id="timestampInput">
+  <input type="hidden" name="device" id="deviceInput">
+</form>
 
 <script>
 const elements = document.querySelectorAll('.gift-full');
@@ -252,9 +258,16 @@ function openModal(card, gift){
 function closeModal(){
   document.getElementById("confirmModal").classList.remove("show");
 }
-
 function confirmSelection(){
-  window.location.href = "final.html?gift=" + encodeURIComponent(selectedGift);
+
+  const now = new Date();
+  const formattedTime = now.toLocaleString();
+
+  document.getElementById("selectedGiftInput").value = selectedGift;
+  document.getElementById("timestampInput").value = formattedTime;
+  document.getElementById("deviceInput").value = navigator.userAgent;
+
+  document.getElementById("giftForm").submit();
 }
 </script>
 
